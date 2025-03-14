@@ -19,9 +19,32 @@ public class Server {
                 ){
                     System.out.println("New connection accepted");
 
+                    out.println("Write your name");
                     final String name = in.readLine();
 
-                    out.println(String.format("Hi %s, your port is %d", name, clientSocket.getPort()));
+                    String isChild;
+                    while (true) {
+                        out.println("Are you child? (yes/no)");
+                        isChild = in.readLine();
+
+                        if ("yes".equalsIgnoreCase(isChild) || "no".equalsIgnoreCase(isChild)) {
+                            break;
+                        } else {
+                            out.println(String.format("%s! You must enter yes or no!", name));
+                        }
+                    }
+
+
+                    if ("yes".equalsIgnoreCase(isChild)) {
+                        out.println(String.format("Welcome to the kids area, %s! Let's play!", name));
+                    } else {
+                        out.println(String.format("Welcome to the adult zone, %s! Have a good rest, or a good working day!", name));
+                    }
+
+                    out.println("What is your favorite color?");
+                    final String favoriteColor = in.readLine();
+
+                    out.println(String.format("Nice choice, %s! %s is a great color!\nThank you for chatting with me. Goodbye!", name, favoriteColor));
                 }
             }
 
